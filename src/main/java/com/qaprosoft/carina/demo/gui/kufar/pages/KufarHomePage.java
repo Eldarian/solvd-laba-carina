@@ -15,7 +15,25 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//article/div/a[1]")
     private ExtendedWebElement lotFirst;
 
+    @FindBy(xpath = "//article/div/a[1]/descendant::h3")
+    private ExtendedWebElement lotFirstLabel;
+
+    @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
+    private ExtendedWebElement portalCloseButton;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public void clickOnFirstLot() {
+        lotFirst.click();
+    }
+
+    public String getLotFirstLabel() {
+        return lotFirstLabel.getText();
+    }
+
+    public void closePortal() {
+        portalCloseButton.click();
     }
 }
