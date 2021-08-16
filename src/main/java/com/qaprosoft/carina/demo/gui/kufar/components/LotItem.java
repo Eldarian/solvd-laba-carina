@@ -17,10 +17,10 @@ public class LotItem extends AbstractUIObject {
 
 
     @FindBy(xpath = "./*")
-    ExtendedWebElement lotLink;
+    private ExtendedWebElement lotLink;
 
     @FindBy(xpath = ".//h3")
-    ExtendedWebElement lotLabel;
+    private ExtendedWebElement lotLabel;
 
     public LotItem(WebDriver driver) {
         super(driver);

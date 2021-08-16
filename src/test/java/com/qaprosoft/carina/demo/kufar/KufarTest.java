@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
+import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.slf4j.Logger;
@@ -38,28 +39,25 @@ public class KufarTest implements IAbstractTest {
         LotDescriptionPage descriptionPage = new LotDescriptionPage(getDriver());
         LOGGER.info("Log description label text is " + descriptionPage.getLotLabelText());
 
-        Assert.assertEquals(label, descriptionPage.getLotLabelText());
+        Assert.assertEquals(descriptionPage.getLotLabelText(), label);
 
-    }
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P2)
-    public void testOpeningLotCreationDialog() {
-        //Abandoned because of CAPTCHA
-    }
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P3)
-    public void testAuthorization() {
-        //Abandoned because of CAPTCHA
     }
 
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testNextPageButton() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePortal();
+        PaginationBlock paginationBlock = homePage.getPaginationBlock();
+        Assert.assertTrue(paginationBlock.isNextPageButtonActive());
+
+        int currentPage = paginationBlock.getCurrentPageIndex();
+        homePage = paginationBlock.openNextPage();
+        PaginationBlock nextPageBlock = homePage.getPaginationBlock();
+
+        Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage+1);
 
     }
 

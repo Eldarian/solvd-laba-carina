@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.gui.kufar.pages;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
+import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -20,6 +21,9 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
     private ExtendedWebElement portalCloseButton;
 
+    @FindBy(xpath = "//div[@data-cy]")
+    private PaginationBlock paginationBlock;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
     }
@@ -34,5 +38,9 @@ public class KufarHomePage extends AbstractPage {
 
     public List<LotItem> getLotItems() {
         return lotItems;
+    }
+
+    public PaginationBlock getPaginationBlock() {
+        return paginationBlock;
     }
 }
