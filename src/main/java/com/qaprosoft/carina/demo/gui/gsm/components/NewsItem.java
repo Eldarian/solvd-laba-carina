@@ -13,30 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.gsm.components;
 
-import java.util.List;
-
+import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.ModelItem;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
+import com.qaprosoft.carina.core.gui.AbstractUIObject;
 
-public class BrandModelsPage extends AbstractPage {
-    @FindBy(xpath = "//div[@id='review-body']//li")
-    private List<ModelItem> models;
+public class NewsItem extends AbstractUIObject {
 
-    public BrandModelsPage(WebDriver driver) {
-        super(driver);
+    @FindBy(xpath="./a")
+    public ExtendedWebElement titleLink;
+    
+    public NewsItem(WebDriver driver, SearchContext sc) {
+        super(driver, sc);
     }
-
-    public ModelInfoPage selectModel(String modelName) {
-        for (ModelItem model : models) {
-            if (model.readModel().equalsIgnoreCase(modelName)) {
-                return model.openModelPage();
-            }
-        }
-        throw new RuntimeException("Unable to open model: " + modelName);
+    
+    public String readTitle() {
+        return titleLink.getElement().getText();
     }
 }

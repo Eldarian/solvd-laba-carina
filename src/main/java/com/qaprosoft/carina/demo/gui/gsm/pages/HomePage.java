@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.gsm.pages;
 
 import java.lang.invoke.MethodHandles;
 import java.util.List;
@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.FooterMenu;
-import com.qaprosoft.carina.demo.gui.components.WeValuePrivacyAd;
+import com.qaprosoft.carina.demo.gui.gsm.components.FooterMenu;
+import com.qaprosoft.carina.demo.gui.gsm.components.WeValuePrivacyAd;
 
 
 public class HomePage extends AbstractPage {

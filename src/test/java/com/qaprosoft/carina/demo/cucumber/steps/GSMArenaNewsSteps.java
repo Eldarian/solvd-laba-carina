@@ -23,9 +23,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.cucumber.CucumberRunner;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.gsm.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.gsm.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.gsm.pages.NewsPage;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;

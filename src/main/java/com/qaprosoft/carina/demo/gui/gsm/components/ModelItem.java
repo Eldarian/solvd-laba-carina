@@ -13,38 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.components.compare;
-
-import java.util.List;
+package com.qaprosoft.carina.demo.gui.gsm.components;
 
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
+import com.qaprosoft.carina.demo.gui.gsm.pages.ModelInfoPage;
 
-public class CondidateBlock extends AbstractUIObject {
-    @FindBy(xpath = ".//input[contains(@id, 'sSearch')]")
-    private ExtendedWebElement inputField;
+public class ModelItem extends AbstractUIObject {
+    @FindBy(xpath = ".//strong/span")
+    private ExtendedWebElement modelLabel;
 
-    @FindBy(xpath = "./div[contains(@class, 'autocomplete-search')]//a[not(@class)]")
-    private List<ExtendedWebElement> autocompleteSearchElements;
+    @FindBy(xpath = ".//a")
+    private ExtendedWebElement modelLink;
 
-    public CondidateBlock(WebDriver driver, SearchContext searchContext) {
+    public ModelItem(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public void sendKeysToInputField(String text) {
-        inputField.click();
-        inputField.type(text);
+    public String readModel() {
+        return modelLabel.getText();
     }
 
-    public void getFirstPhone() {
-		pause(1);
-		Assert.assertTrue(autocompleteSearchElements.size() > 0, "No phones found!");
-		autocompleteSearchElements.get(0).assertElementPresent();
-        autocompleteSearchElements.get(0).click();
+    public ModelInfoPage openModelPage() {
+        modelLink.click();
+        return new ModelInfoPage(driver);
     }
 }

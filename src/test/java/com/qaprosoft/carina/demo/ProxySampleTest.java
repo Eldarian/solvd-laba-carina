@@ -29,8 +29,8 @@ import com.qaprosoft.carina.browsermobproxy.ProxyPool;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.R;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
-import com.qaprosoft.carina.demo.gui.pages.HomePage;
-import com.qaprosoft.carina.demo.gui.pages.NewsPage;
+import com.qaprosoft.carina.demo.gui.gsm.pages.HomePage;
+import com.qaprosoft.carina.demo.gui.gsm.pages.NewsPage;
 import com.zebrunner.agent.core.registrar.Artifact;
 
 import net.lightbody.bmp.BrowserMobProxy;

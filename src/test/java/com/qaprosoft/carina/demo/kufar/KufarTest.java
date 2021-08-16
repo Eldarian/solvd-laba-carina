@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
@@ -65,6 +66,10 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P5)
     public void testRegionSelection() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
+        homePage.open();
+        homePage.closePortal();
 
     }
 

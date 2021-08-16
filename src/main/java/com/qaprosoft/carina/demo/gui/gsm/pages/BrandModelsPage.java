@@ -13,37 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.gui.pages;
+package com.qaprosoft.carina.demo.gui.gsm.pages;
 
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.gui.components.NewsItem;
+import com.qaprosoft.carina.demo.gui.gsm.components.ModelItem;
 
-public class NewsPage extends AbstractPage {
-    
-    @FindBy(className="searchFor")
-    private ExtendedWebElement searchTextField;
-    
-    @FindBy(xpath="//input[@value='Search']")
-    private ExtendedWebElement searchButton;
-    
-    @FindBy(xpath="//div[@class='news-item']")
-    private List<NewsItem> news;
-    
-    public NewsPage(WebDriver driver) {
+public class BrandModelsPage extends AbstractPage {
+    @FindBy(xpath = "//div[@id='review-body']//li")
+    private List<ModelItem> models;
+
+    public BrandModelsPage(WebDriver driver) {
         super(driver);
-        setPageURL("/news.php3");
     }
-    
-    public List<NewsItem> searchNews(String q) {
-        searchTextField.type(q);
-        searchButton.click();
-        return news;
+
+    public ModelInfoPage selectModel(String modelName) {
+        for (ModelItem model : models) {
+            if (model.readModel().equalsIgnoreCase(modelName)) {
+                return model.openModelPage();
+            }
+        }
+        throw new RuntimeException("Unable to open model: " + modelName);
     }
-    
 }
