@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebEleme
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
+import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -24,6 +25,12 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@data-cy]")
     private PaginationBlock paginationBlock;
 
+    @FindBy(xpath = "//div[@id='header']/div[1]/div[3]//button[span/img]")
+    private ExtendedWebElement regionSelectionButton;
+
+    @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
+    private RegionSelectionMenu regionSelectionMenu;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
     }
@@ -42,5 +49,10 @@ public class KufarHomePage extends AbstractPage {
 
     public PaginationBlock getPaginationBlock() {
         return paginationBlock;
+    }
+
+    public RegionSelectionMenu openRegionSelectionMenu() {
+        regionSelectionButton.click();
+        return regionSelectionMenu;
     }
 }

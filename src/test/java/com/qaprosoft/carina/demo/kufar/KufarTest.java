@@ -7,6 +7,7 @@ import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
+import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.slf4j.Logger;
@@ -67,10 +68,12 @@ public class KufarTest implements IAbstractTest {
     @TestPriority(Priority.P5)
     public void testRegionSelection() {
         KufarHomePage homePage = new KufarHomePage(getDriver());
-        homePage.setPageOpeningStrategy(PageOpeningStrategy.BY_ELEMENT);
         homePage.open();
         homePage.closePortal();
+        RegionSelectionMenu regionSelectionMenu = homePage.openRegionSelectionMenu();
 
+        regionSelectionMenu.selectRegion(3);
+        regionSelectionMenu.selectTown(4);
     }
 
     @Test
