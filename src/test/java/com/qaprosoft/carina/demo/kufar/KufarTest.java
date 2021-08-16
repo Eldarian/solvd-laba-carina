@@ -46,14 +46,14 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P2)
     public void testOpeningLotCreationDialog() {
-
+        //Abandoned because of CAPTCHA
     }
 
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P3)
     public void testAuthorization() {
-
+        //Abandoned because of CAPTCHA
     }
 
     @Test
