@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
+import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
+import java.util.List;
 
 public class KufarTest implements IAbstractTest {
 
@@ -24,21 +26,20 @@ public class KufarTest implements IAbstractTest {
         KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
         kufarHomePage.open();
         kufarHomePage.closePortal();
-        String label = kufarHomePage.getLotFirstLabel();
+
+        List<LotItem> itemList = kufarHomePage.getLotItems();
+        for(LotItem lot : itemList) {
+            LOGGER.info(lot.getLotLabel());
+        }
+        String label = itemList.get(0).getLotLabel();
         LOGGER.info("Lot[1] label is " + label);
 
-        kufarHomePage.clickOnFirstLot();
-        String originalWindow = getDriver().getWindowHandle();
-        for (String windowHandle : getDriver().getWindowHandles()) {
-            if(!originalWindow.contentEquals(windowHandle)) {
-                getDriver().switchTo().window(windowHandle);
-                break;
-            }
-        }
+        kufarHomePage.openFirstLot();
         LotDescriptionPage descriptionPage = new LotDescriptionPage(getDriver());
         LOGGER.info("Log description label text is " + descriptionPage.getLotLabelText());
 
         Assert.assertEquals(label, descriptionPage.getLotLabelText());
+
     }
 
     @Test
