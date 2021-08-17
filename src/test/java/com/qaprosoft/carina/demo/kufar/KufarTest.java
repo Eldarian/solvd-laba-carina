@@ -135,7 +135,7 @@ public class KufarTest implements IAbstractTest {
     @TestPriority(Priority.P6)
     public void testGalleryViewSwitch() {}
 
-    //Doesn't work!
+
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
