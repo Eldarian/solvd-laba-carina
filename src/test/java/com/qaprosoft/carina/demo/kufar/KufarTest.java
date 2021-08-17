@@ -145,6 +145,11 @@ public class KufarTest implements IAbstractTest {
         homePage.closePopupMessage();
 
         getDriver().manage().window().setSize(new Dimension(1100, 768));
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertFalse(homePage.getFilterButton().isPresent());
 
         getDriver().manage().window().setSize(new Dimension(800, 768));
