@@ -9,6 +9,7 @@ import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
+import org.openqa.selenium.Dimension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -27,7 +28,7 @@ public class KufarTest implements IAbstractTest {
     public void testLotOpening() {
         KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
         kufarHomePage.open();
-        kufarHomePage.closePortal();
+        kufarHomePage.closePopupMessage();
 
         List<LotItem> itemList = kufarHomePage.getLotItems();
         for(LotItem lot : itemList) {
@@ -50,7 +51,7 @@ public class KufarTest implements IAbstractTest {
     public void testNextPageButton() {
         KufarHomePage homePage = new KufarHomePage(getDriver());
         homePage.open();
-        homePage.closePortal();
+        homePage.closePopupMessage();
         PaginationBlock paginationBlock = homePage.getPaginationBlock();
         Assert.assertTrue(paginationBlock.isNextPageButtonActive());
 
@@ -68,7 +69,7 @@ public class KufarTest implements IAbstractTest {
     public void testRegionSelection() {
         KufarHomePage homePage = new KufarHomePage(getDriver());
         homePage.open();
-        homePage.closePortal();
+        homePage.closePopupMessage();
         RegionSelectionMenu regionSelectionMenu = homePage.openRegionSelectionMenu();
 
         String region = regionSelectionMenu.selectRegion(0);
@@ -91,14 +92,12 @@ public class KufarTest implements IAbstractTest {
         if(selectedRegion.contains(", ")) {
             for (LotItem item : homePage.getLotItems()) {
                 String itemRegion = item.getRegionLabelText();
-                LOGGER.info("94: " + itemRegion);
                 Assert.assertEquals(item.getRegionLabelText(), selectedRegion);
             }
         } else if(!selectedRegion.equals("Вся Беларусь")) {
             for (LotItem item : homePage.getLotItems()) {
                 String itemRegion = item.getRegionLabelText();
                 itemRegion = itemRegion.split(", ")[1];
-                LOGGER.info("100: " + itemRegion);
                 Assert.assertEquals(itemRegion, selectedRegion);
             }
         }
@@ -107,7 +106,14 @@ public class KufarTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
-    public void testComputerCategoryOpen() {}
+    public void testComputerCategoryOpenFromLeftMenu() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+
+        homePage.openComputersCategory();
+        Assert.assertTrue(homePage.getPageHeaderText().startsWith("Компьютерная техника"));
+    }
 
 
     @Test
@@ -125,7 +131,17 @@ public class KufarTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
-    public void testFilterButtonAppearance() {}
+    public void testFilterButtonAppearance() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+
+        getDriver().manage().window().setSize(new Dimension(1100, 768));
+        Assert.assertFalse(homePage.getFilterButton().isPresent());
+
+        getDriver().manage().window().setSize(new Dimension(800, 768));
+        Assert.assertTrue(homePage.getFilterButton().getElement().isDisplayed());
+    }
 
 
     @Test

@@ -32,6 +32,15 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
     private RegionSelectionMenu regionSelectionMenu;
 
+    @FindBy(xpath = "//ul//span[text()='Компьютерная техника']/parent::a")
+    private ExtendedWebElement computersCategoryLink;
+
+    @FindBy(xpath = "//h1")
+    private ExtendedWebElement pageHeader;
+
+    @FindBy(xpath = "//span[text()='Фильтры']")
+    private ExtendedWebElement filterButton;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
     }
@@ -40,7 +49,7 @@ public class KufarHomePage extends AbstractPage {
         lotItems.get(0).openDescriptionPage();
     }
 
-    public void closePortal() {
+    public void closePopupMessage() {
         closePopupMessageButton.click();
     }
 
@@ -62,4 +71,15 @@ public class KufarHomePage extends AbstractPage {
     }
 
 
+    public void openComputersCategory() {
+        computersCategoryLink.click();
+    }
+
+    public String getPageHeaderText() {
+        return pageHeader.getText();
+    }
+
+    public ExtendedWebElement getFilterButton() {
+        return filterButton;
+    }
 }
