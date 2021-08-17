@@ -119,7 +119,14 @@ public class KufarTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
-    public void testLanguageSwitch() {}
+    public void testLanguageSwitch() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+
+        homePage.switchLanguage();
+        Assert.assertEquals(homePage.getPageHeaderText(), "Усе аб'явы ў Беларусі");
+    }
 
 
     @Test
@@ -147,5 +154,29 @@ public class KufarTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
-    public void testResultSortByPrice() {}
+    public void testResultSortByPrice() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+
+        homePage.selectPriceSortByDescending();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int price = Integer.MAX_VALUE;
+        List<LotItem> items = homePage.getLotItems();
+        //for(LotItem item : homePage.getLotItems()) {
+        for(int i = 0; i < items.size(); i++) {
+            int currentPrice = items.get(i).getPrice();
+            Assert.assertTrue(currentPrice <= price, currentPrice + " > " + price);
+            price = currentPrice;
+        }
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }

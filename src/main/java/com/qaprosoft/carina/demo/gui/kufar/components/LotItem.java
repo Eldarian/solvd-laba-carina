@@ -25,6 +25,9 @@ public class LotItem extends AbstractUIObject {
     @FindBy(xpath = ".//span[preceding-sibling::img]")
     private ExtendedWebElement regionLabel;
 
+    @FindBy(xpath = ".//span[contains(text(), ' р.')]")
+    private ExtendedWebElement priceSpan;
+
     public LotItem(WebDriver driver) {
         super(driver);
     }
@@ -56,5 +59,15 @@ public class LotItem extends AbstractUIObject {
 
     public String getRegionLabelText() {
         return regionLabel.getText();
+    }
+
+    public int getPrice() {
+        String s = priceSpan.getText();
+        LOGGER.info(s);
+        if(s.equals("Бесплатно")) return 0;
+        s = s.replaceAll("\\s+","");
+        s = s.replaceAll("р.", "");
+        LOGGER.info(s);
+        return Integer.parseInt(s);
     }
 }

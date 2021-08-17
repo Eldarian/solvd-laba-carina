@@ -41,6 +41,12 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//span[text()='Фильтры']")
     private ExtendedWebElement filterButton;
 
+    @FindBy(xpath = "//select[@name='sort']")
+    private ExtendedWebElement sortSelector;
+
+    @FindBy(xpath = "//div[@id='main-content']/following-sibling::div//button")
+    private ExtendedWebElement languageButton;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
     }
@@ -81,5 +87,13 @@ public class KufarHomePage extends AbstractPage {
 
     public ExtendedWebElement getFilterButton() {
         return filterButton;
+    }
+
+    public void selectPriceSortByDescending() {
+        sortSelector.select("По цене ↓");
+    }
+
+    public void switchLanguage() {
+        languageButton.click();
     }
 }
