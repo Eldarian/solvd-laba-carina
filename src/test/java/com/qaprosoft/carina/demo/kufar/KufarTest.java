@@ -4,7 +4,6 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.core.foundation.webdriver.decorator.PageOpeningStrategy;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
@@ -72,8 +71,37 @@ public class KufarTest implements IAbstractTest {
         homePage.closePortal();
         RegionSelectionMenu regionSelectionMenu = homePage.openRegionSelectionMenu();
 
-        regionSelectionMenu.selectRegion(3);
-        regionSelectionMenu.selectTown(4);
+        String region = regionSelectionMenu.selectRegion(0);
+        String town = regionSelectionMenu.selectTown(4);
+        regionSelectionMenu.confirm();
+
+        String selectedRegion = homePage.getSelectedRegionLabel();
+        if(town != null) {
+            Assert.assertTrue(town.equals(selectedRegion) || (region + ", " + town).equals(selectedRegion));
+        } else {
+            Assert.assertEquals(selectedRegion, region);
+        }
+
+        LOGGER.info("Selected " + selectedRegion);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if(selectedRegion.contains(", ")) {
+            for (LotItem item : homePage.getLotItems()) {
+                String itemRegion = item.getRegionLabelText();
+                LOGGER.info("94: " + itemRegion);
+                Assert.assertEquals(item.getRegionLabelText(), selectedRegion);
+            }
+        } else if(!selectedRegion.equals("Вся Беларусь")) {
+            for (LotItem item : homePage.getLotItems()) {
+                String itemRegion = item.getRegionLabelText();
+                itemRegion = itemRegion.split(", ")[1];
+                LOGGER.info("100: " + itemRegion);
+                Assert.assertEquals(itemRegion, selectedRegion);
+            }
+        }
     }
 
     @Test

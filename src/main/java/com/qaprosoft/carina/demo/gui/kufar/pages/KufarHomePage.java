@@ -5,6 +5,7 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -20,7 +21,7 @@ public class KufarHomePage extends AbstractPage {
     private List<LotItem> lotItems;
 
     @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
-    private ExtendedWebElement portalCloseButton;
+    private ExtendedWebElement closePopupMessageButton;
 
     @FindBy(xpath = "//div[@data-cy]")
     private PaginationBlock paginationBlock;
@@ -40,7 +41,7 @@ public class KufarHomePage extends AbstractPage {
     }
 
     public void closePortal() {
-        portalCloseButton.click();
+        closePopupMessageButton.click();
     }
 
     public List<LotItem> getLotItems() {
@@ -55,4 +56,10 @@ public class KufarHomePage extends AbstractPage {
         regionSelectionButton.click();
         return regionSelectionMenu;
     }
+
+    public String getSelectedRegionLabel() {
+        return regionSelectionButton.findExtendedWebElement(By.xpath("./span/span")).getText();
+    }
+
+
 }

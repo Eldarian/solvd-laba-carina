@@ -22,6 +22,9 @@ public class LotItem extends AbstractUIObject {
     @FindBy(xpath = ".//h3")
     private ExtendedWebElement lotLabel;
 
+    @FindBy(xpath = ".//span[preceding-sibling::img]")
+    private ExtendedWebElement regionLabel;
+
     public LotItem(WebDriver driver) {
         super(driver);
     }
@@ -49,5 +52,9 @@ public class LotItem extends AbstractUIObject {
             }
         }
         return new LotDescriptionPage(getDriver());
+    }
+
+    public String getRegionLabelText() {
+        return regionLabel.getText();
     }
 }
