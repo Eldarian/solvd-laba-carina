@@ -23,6 +23,9 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
     private ExtendedWebElement closePopupMessageButton;
 
+    @FindBy(xpath = "//*[@id=\"main-content\"]/div[2]//button[@id='cancel']")
+    private ExtendedWebElement closeSubscribePopupButton;
+
     @FindBy(xpath = "//div[@data-cy]")
     private PaginationBlock paginationBlock;
 
@@ -57,6 +60,10 @@ public class KufarHomePage extends AbstractPage {
 
     public void closePopupMessage() {
         closePopupMessageButton.click();
+    }
+
+    public void closeSubscribePopup() {
+        closeSubscribePopupButton.click();
     }
 
     public List<LotItem> getLotItems() {

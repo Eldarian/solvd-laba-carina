@@ -123,6 +123,7 @@ public class KufarTest implements IAbstractTest {
         KufarHomePage homePage = new KufarHomePage(getDriver());
         homePage.open();
         homePage.closePopupMessage();
+        homePage.closeSubscribePopup();
 
         homePage.switchLanguage();
         Assert.assertEquals(homePage.getPageHeaderText(), "Усе аб'явы ў Беларусі");
@@ -134,7 +135,7 @@ public class KufarTest implements IAbstractTest {
     @TestPriority(Priority.P6)
     public void testGalleryViewSwitch() {}
 
-
+    //Doesn't work!
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
@@ -167,9 +168,8 @@ public class KufarTest implements IAbstractTest {
         }
         int price = Integer.MAX_VALUE;
         List<LotItem> items = homePage.getLotItems();
-        //for(LotItem item : homePage.getLotItems()) {
-        for(int i = 0; i < items.size(); i++) {
-            int currentPrice = items.get(i).getPrice();
+        for (LotItem item : items) {
+            int currentPrice = item.getPrice();
             Assert.assertTrue(currentPrice <= price, currentPrice + " > " + price);
             price = currentPrice;
         }
