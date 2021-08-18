@@ -93,7 +93,6 @@ public class KufarHomePage extends AbstractPage {
     }
 
     public ExtendedWebElement getFilterButton() {
-        LOGGER.info(filterButton.isElementPresent()? "exists":"not exists");
         return filterButton;
     }
 

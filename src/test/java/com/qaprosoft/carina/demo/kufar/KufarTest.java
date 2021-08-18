@@ -10,17 +10,13 @@ import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.openqa.selenium.Dimension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class KufarTest implements IAbstractTest {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
     @MethodOwner(owner = "eldarian")
@@ -31,16 +27,9 @@ public class KufarTest implements IAbstractTest {
         kufarHomePage.closePopupMessage();
 
         List<LotItem> itemList = kufarHomePage.getLotItems();
-        for(LotItem lot : itemList) {
-            LOGGER.info(lot.getLotLabel());
-        }
         String label = itemList.get(0).getLotLabel();
-        LOGGER.info("Lot[1] label is " + label);
-
         kufarHomePage.openFirstLot();
         LotDescriptionPage descriptionPage = new LotDescriptionPage(getDriver());
-        LOGGER.info("Log description label text is " + descriptionPage.getLotLabelText());
-
         Assert.assertEquals(descriptionPage.getLotLabelText(), label);
 
     }
@@ -59,7 +48,7 @@ public class KufarTest implements IAbstractTest {
         homePage = paginationBlock.openNextPage();
         PaginationBlock nextPageBlock = homePage.getPaginationBlock();
 
-        Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage+1);
+        Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage + 1);
 
     }
 
@@ -77,24 +66,19 @@ public class KufarTest implements IAbstractTest {
         regionSelectionMenu.confirm();
 
         String selectedRegion = homePage.getSelectedRegionLabel();
-        if(town != null) {
+        if (town != null) {
             Assert.assertTrue(town.equals(selectedRegion) || (region + ", " + town).equals(selectedRegion));
         } else {
             Assert.assertEquals(selectedRegion, region);
         }
 
-        LOGGER.info("Selected " + selectedRegion);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if(selectedRegion.contains(", ")) {
+        pause(1);
+
+        if (selectedRegion.contains(", ")) {
             for (LotItem item : homePage.getLotItems()) {
-                String itemRegion = item.getRegionLabelText();
                 Assert.assertEquals(item.getRegionLabelText(), selectedRegion);
             }
-        } else if(!selectedRegion.equals("Вся Беларусь")) {
+        } else if (!selectedRegion.equals("Вся Беларусь")) {
             for (LotItem item : homePage.getLotItems()) {
                 String itemRegion = item.getRegionLabelText();
                 itemRegion = itemRegion.split(", ")[1];
@@ -133,7 +117,8 @@ public class KufarTest implements IAbstractTest {
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
-    public void testGalleryViewSwitch() {}
+    public void testGalleryViewSwitch() {
+    }
 
 
     @Test
@@ -145,11 +130,7 @@ public class KufarTest implements IAbstractTest {
         homePage.closePopupMessage();
 
         getDriver().manage().window().setSize(new Dimension(1100, 768));
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause(1);
         Assert.assertFalse(homePage.getFilterButton().isPresent());
 
         getDriver().manage().window().setSize(new Dimension(800, 768));
@@ -166,22 +147,13 @@ public class KufarTest implements IAbstractTest {
         homePage.closePopupMessage();
 
         homePage.selectPriceSortByDescending();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause(1);
         int price = Integer.MAX_VALUE;
         List<LotItem> items = homePage.getLotItems();
         for (LotItem item : items) {
             int currentPrice = item.getPrice();
             Assert.assertTrue(currentPrice <= price, currentPrice + " > " + price);
             price = currentPrice;
-        }
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }

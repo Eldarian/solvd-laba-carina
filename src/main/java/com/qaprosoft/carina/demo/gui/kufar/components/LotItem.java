@@ -49,7 +49,7 @@ public class LotItem extends AbstractUIObject {
         lotLink.click();
         String originalWindow = getDriver().getWindowHandle();
         for (String windowHandle : getDriver().getWindowHandles()) {
-            if(!originalWindow.contentEquals(windowHandle)) {
+            if (!originalWindow.contentEquals(windowHandle)) {
                 getDriver().switchTo().window(windowHandle);
                 break;
             }
@@ -63,11 +63,8 @@ public class LotItem extends AbstractUIObject {
 
     public int getPrice() {
         String s = priceSpan.getText();
-        LOGGER.info(s);
-        if(s.equals("Бесплатно")) return 0;
-        s = s.replaceAll("\\s+","");
-        s = s.replaceAll("р.", "");
-        LOGGER.info(s);
+        if (s.equals("Бесплатно")) return 0;
+        s = s.replaceAll("\\s+", "").replaceAll("р.", "");
         return Integer.parseInt(s);
     }
 }
