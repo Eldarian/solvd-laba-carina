@@ -28,8 +28,9 @@ public class KufarTest implements IAbstractTest {
 
         List<LotItem> itemList = kufarHomePage.getLotItems();
         String label = itemList.get(0).getLotLabel();
-        kufarHomePage.openFirstLot();
-        LotDescriptionPage descriptionPage = new LotDescriptionPage(getDriver());
+
+        LotDescriptionPage descriptionPage = kufarHomePage.openFirstLot();
+        Assert.assertTrue(descriptionPage.isPageOpened());
         Assert.assertEquals(descriptionPage.getLotLabelText(), label);
 
     }
@@ -112,14 +113,6 @@ public class KufarTest implements IAbstractTest {
         homePage.switchLanguage();
         Assert.assertEquals(homePage.getPageHeaderText(), "Усе аб'явы ў Беларусі");
     }
-
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P6)
-    public void testGalleryViewSwitch() {
-    }
-
 
     @Test
     @MethodOwner(owner = "eldarian")

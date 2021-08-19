@@ -54,8 +54,8 @@ public class KufarHomePage extends AbstractPage {
         super(driver);
     }
 
-    public void openFirstLot() {
-        lotItems.get(0).openDescriptionPage();
+    public LotDescriptionPage openFirstLot() {
+        return lotItems.get(0).openDescriptionPage();
     }
 
     public void closePopupMessage() {
