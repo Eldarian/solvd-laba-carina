@@ -10,10 +10,13 @@ import org.openqa.selenium.support.FindBy;
 public class PaginationBlock extends AbstractUIObject {
 
     @FindBy(xpath = "./*[last()]")
-    private ExtendedWebElement lastActivePaginationButton;
+    private ExtendedWebElement nextPageButton;
 
     @FindBy(xpath = "./span[text() and not(text()='...')]")
     private ExtendedWebElement currentPageSpan;
+
+    @FindBy(xpath = "./*[1]")
+    private ExtendedWebElement previousPageButton;
 
     public PaginationBlock(WebDriver driver) {
         super(driver);
@@ -24,14 +27,19 @@ public class PaginationBlock extends AbstractUIObject {
     }
 
     public boolean isNextPageButtonActive() {
-        return lastActivePaginationButton.isClickable();
+        return nextPageButton.isClickable();
     }
 
     public KufarHomePage openNextPage() {
         //if(isNextPageButtonActive()) {
-            lastActivePaginationButton.click();
+            nextPageButton.click();
         //}
-        return new KufarHomePage(driver);
+        return new KufarHomePage(getDriver());
+    }
+
+    public KufarHomePage openPreviousPage() {
+        previousPageButton.click();
+        return new KufarHomePage(getDriver());
     }
 
     public int getCurrentPageIndex() {

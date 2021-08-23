@@ -30,62 +30,8 @@ public class KufarTest implements IAbstractTest {
         String label = itemList.get(0).getLotLabel();
 
         LotDescriptionPage descriptionPage = kufarHomePage.openFirstLot();
-        Assert.assertTrue(descriptionPage.isPageOpened());
         Assert.assertEquals(descriptionPage.getLotLabelText(), label);
 
-    }
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P4)
-    public void testNextPageButton() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
-        homePage.open();
-        homePage.closePopupMessage();
-        PaginationBlock paginationBlock = homePage.getPaginationBlock();
-        Assert.assertTrue(paginationBlock.isNextPageButtonActive());
-
-        int currentPage = paginationBlock.getCurrentPageIndex();
-        homePage = paginationBlock.openNextPage();
-        PaginationBlock nextPageBlock = homePage.getPaginationBlock();
-
-        Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage + 1);
-
-    }
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P5)
-    public void testRegionSelection() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
-        homePage.open();
-        homePage.closePopupMessage();
-        RegionSelectionMenu regionSelectionMenu = homePage.openRegionSelectionMenu();
-
-        String region = regionSelectionMenu.selectRegion(0);
-        String town = regionSelectionMenu.selectTown(4);
-        regionSelectionMenu.confirm();
-
-        String selectedRegion = homePage.getSelectedRegionLabel();
-        if (town != null) {
-            Assert.assertTrue(town.equals(selectedRegion) || (region + ", " + town).equals(selectedRegion));
-        } else {
-            Assert.assertEquals(selectedRegion, region);
-        }
-
-        pause(1);
-
-        if (selectedRegion.contains(", ")) {
-            for (LotItem item : homePage.getLotItems()) {
-                Assert.assertEquals(item.getRegionLabelText(), selectedRegion);
-            }
-        } else if (!selectedRegion.equals("Вся Беларусь")) {
-            for (LotItem item : homePage.getLotItems()) {
-                String itemRegion = item.getRegionLabelText();
-                itemRegion = itemRegion.split(", ")[1];
-                Assert.assertEquals(itemRegion, selectedRegion);
-            }
-        }
     }
 
     @Test
@@ -95,8 +41,10 @@ public class KufarTest implements IAbstractTest {
         KufarHomePage homePage = new KufarHomePage(getDriver());
         homePage.open();
         homePage.closePopupMessage();
+        homePage.closeSubscribePopup();
 
         homePage.openComputersCategory();
+        pause(1);
         Assert.assertTrue(homePage.getPageHeaderText().startsWith("Компьютерная техника"));
     }
 
@@ -112,6 +60,8 @@ public class KufarTest implements IAbstractTest {
 
         homePage.switchLanguage();
         Assert.assertEquals(homePage.getPageHeaderText(), "Усе аб'явы ў Беларусі");
+        homePage.switchLanguage();
+        Assert.assertEquals(homePage.getPageHeaderText(), "Все объявления в Беларуси");
     }
 
     @Test
@@ -130,23 +80,4 @@ public class KufarTest implements IAbstractTest {
         Assert.assertTrue(homePage.getFilterButton().getElement().isDisplayed());
     }
 
-
-    @Test
-    @MethodOwner(owner = "eldarian")
-    @TestPriority(Priority.P6)
-    public void testResultSortByPrice() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
-        homePage.open();
-        homePage.closePopupMessage();
-
-        homePage.selectPriceSortByDescending();
-        pause(1);
-        int price = Integer.MAX_VALUE;
-        List<LotItem> items = homePage.getLotItems();
-        for (LotItem item : items) {
-            int currentPrice = item.getPrice();
-            Assert.assertTrue(currentPrice <= price, currentPrice + " > " + price);
-            price = currentPrice;
-        }
-    }
 }
