@@ -4,6 +4,27 @@
     <test name="kufar gui acceptance">
         <classes>
             <class name="com.qaprosoft.carina.demo.kufar.KufarTest"/>
+            <class name="com.qaprosoft.carina.demo.kufar.PaginationTest" />
+            <class name="com.qaprosoft.carina.demo.kufar.RegionTest" />
+        </classes>
+    </test>
+
+    <test name="language test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.kufar.KufarTest">
+                <methods>
+                    <include name="testLanguageSwitch" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="region test">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.kufar.RegionTest">
+                <methods>
+                    <exclude name="testExclusion"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

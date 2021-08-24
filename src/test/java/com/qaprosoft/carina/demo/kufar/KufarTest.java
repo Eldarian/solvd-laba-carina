@@ -5,18 +5,38 @@ import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
-import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
-import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.openqa.selenium.Dimension;
 
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import org.testng.log4testng.Logger;
 
 import java.util.List;
 
 public class KufarTest implements IAbstractTest {
+    private static final Logger LOGGER = Logger.getLogger(KufarTest.class);
+
+    @BeforeSuite
+    public void beforeSuite() {
+        LOGGER.info("Kufar Test Before Suite");
+    }
+
+    @BeforeTest
+    public void beforeTest() {
+        LOGGER.info("Kufar Test Before Test");
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        LOGGER.info("Kufar Test Before Class");
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        LOGGER.info("Kufar Test Before Method");
+    }
 
     @Test
     @MethodOwner(owner = "eldarian")
@@ -78,6 +98,26 @@ public class KufarTest implements IAbstractTest {
 
         getDriver().manage().window().setSize(new Dimension(800, 768));
         Assert.assertTrue(homePage.getFilterButton().getElement().isDisplayed());
+    }
+
+    @AfterSuite
+    public void afterSuite() {
+        LOGGER.info("Kufar Test After Suite");
+    }
+
+    @AfterTest
+    public void afterTest() {
+        LOGGER.info("Kufar Test After Test");
+    }
+
+    @AfterClass
+    public void afterClass() {
+        LOGGER.info("Kufar Test After Class");
+    }
+
+    @AfterMethod
+    public void afterMethod() {
+        LOGGER.info("Kufar Test After Method");
     }
 
 }
