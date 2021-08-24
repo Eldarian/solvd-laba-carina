@@ -38,6 +38,10 @@ public class RegionSelectionMenu extends AbstractUIObject {
         return null;
    }
 
+   public boolean isConfirmClickable() {
+        return confirmButton.isVisible();
+   }
+
     public void confirm() {
         confirmButton.click();
     }
