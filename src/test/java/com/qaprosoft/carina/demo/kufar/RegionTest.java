@@ -113,7 +113,7 @@ public class RegionTest implements IAbstractTest {
         Assert.assertEquals(selectedRegion, region);
     }
 
-
+    @Test
     public void testExclusion() {
         LOGGER.info("this test should be excluded");
     }
@@ -136,5 +136,7 @@ public class RegionTest implements IAbstractTest {
     @AfterMethod
     public void afterMethod() {
         LOGGER.info("Region Test After Method");
+        if(regionSelectionMenu.isConfirmClickable())
+            regionSelectionMenu.confirm();
     }
 }
