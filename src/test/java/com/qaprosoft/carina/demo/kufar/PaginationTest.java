@@ -6,13 +6,16 @@ import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.log4testng.Logger;
+
+import java.lang.invoke.MethodHandles;
 
 public class PaginationTest implements IAbstractTest {
 
-    private static final Logger LOGGER = Logger.getLogger(PaginationTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     private KufarHomePage homePage;
     private PaginationBlock paginationBlock;

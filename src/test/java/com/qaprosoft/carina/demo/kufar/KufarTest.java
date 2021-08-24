@@ -9,22 +9,25 @@ import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
 import org.openqa.selenium.Dimension;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.log4testng.Logger;
 
+import java.lang.invoke.MethodHandles;
 import java.util.List;
 
 public class KufarTest implements IAbstractTest {
-    private static final Logger LOGGER = Logger.getLogger(KufarTest.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
 
     @BeforeSuite
-    public void beforeSuite() {
+    public void beforeKufarSuite() {
         LOGGER.info("Kufar Test Before Suite");
     }
 
     @BeforeTest
-    public void beforeTest() {
+    public void beforeKufarTest() {
         LOGGER.info("Kufar Test Before Test");
     }
 
