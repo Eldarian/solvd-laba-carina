@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.qaprosoft.carina.demo.api;
+package com.qaprosoft.carina.demo.api.jsonplaceholder;
 
 import com.qaprosoft.carina.core.foundation.api.AbstractApiMethodV2;
 import com.qaprosoft.carina.core.foundation.utils.Configuration;
 
-public class DeleteUserMethod extends AbstractApiMethodV2 {
+import java.util.Properties;
 
-    public DeleteUserMethod() {
-        super("api/users/_delete/rq.json", "api/users/_delete/rs.json", "api/users/user.properties");
+public class GetUserMethods extends AbstractApiMethodV2 {
+    public GetUserMethods() {
+        super(null, "api/users/_get/rs.json", new Properties());
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
     }
 }

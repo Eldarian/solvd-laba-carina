@@ -33,14 +33,18 @@ public class PaginationTest implements IAbstractTest {
     @BeforeClass
     public void beforeClass() {
         LOGGER.info("Pagination Test Before Class");
+        homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+        paginationBlock = homePage.getPaginationBlock();
+
     }
 
     @BeforeMethod
     public void beforeMethod() {
         LOGGER.info("Pagination Test Before Method");
-        homePage = new KufarHomePage(getDriver());
-        homePage.open();
-        homePage.closePopupMessage();
+        pause(3);
+        paginationBlock.openFirstPage();
     }
 
     @Test
@@ -48,7 +52,6 @@ public class PaginationTest implements IAbstractTest {
     @TestPriority(Priority.P4)
     public void testNextPageButtonOnFirstPage() {
 
-        paginationBlock = homePage.getPaginationBlock();
         Assert.assertTrue(paginationBlock.isNextPageButtonActive());
 
         int currentPage = paginationBlock.getCurrentPageIndex();
@@ -63,7 +66,6 @@ public class PaginationTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testNextPageButtonOnThirdPage(){
-        paginationBlock = homePage.getPaginationBlock();
         Assert.assertTrue(paginationBlock.isNextPageButtonActive());
 
         int currentPage = paginationBlock.getCurrentPageIndex();
@@ -78,14 +80,15 @@ public class PaginationTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testNextPageButtonOnLastPage() {
-
+        paginationBlock.openLastPage();
+        Assert.assertFalse(paginationBlock.isNextPageButtonActive());
     }
 
     @Test
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testPreviousPageButtonOnFirstPage() {
-
+        Assert.assertFalse(paginationBlock.isPreviousPageButtonActive());
     }
 
     @Test

@@ -18,6 +18,12 @@ public class PaginationBlock extends AbstractUIObject {
     @FindBy(xpath = "./*[1]")
     private ExtendedWebElement previousPageButton;
 
+    @FindBy(xpath = "./*[2]")
+    private ExtendedWebElement firstPageButton;
+
+    @FindBy(xpath = "./*[position() = last() - 1]")
+    private ExtendedWebElement lastPageButton;
+
     public PaginationBlock(WebDriver driver) {
         super(driver);
     }
@@ -44,5 +50,27 @@ public class PaginationBlock extends AbstractUIObject {
 
     public int getCurrentPageIndex() {
         return Integer.parseInt(currentPageSpan.getText());
+    }
+
+    public void openFirstPage() {
+        if(firstPageButton.isClickable()) {
+            firstPageButton.click();
+        }
+    }
+
+    public void openThirdPage() {
+        openFirstPage();
+        pause(3);
+        nextPageButton.click();
+        pause(3);
+        nextPageButton.click();
+    }
+
+    public void openLastPage() {
+        lastPageButton.click();
+    }
+
+    public boolean isPreviousPageButtonActive() {
+        return previousPageButton.isChecked();
     }
 }
