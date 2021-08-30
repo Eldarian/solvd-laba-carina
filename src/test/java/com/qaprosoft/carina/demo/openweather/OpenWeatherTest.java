@@ -19,5 +19,6 @@ public class OpenWeatherTest implements IAbstractTest {
         LOGGER.info(api.getProperties().getProperty("appid"));
         api.expectResponseStatus(HttpResponseStatusType.OK_200);
         api.callAPI();
+        api.validateResponseAgainstSchema("api/openweather/_get/rs.schema");
     }
 }
