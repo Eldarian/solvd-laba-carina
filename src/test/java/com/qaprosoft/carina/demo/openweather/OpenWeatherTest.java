@@ -14,11 +14,20 @@ public class OpenWeatherTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @Test
-    public void testGetWeatherByTownName() {
+    public void testGetWeatherByTownNameBySchema() {
         GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
         LOGGER.info(api.getProperties().getProperty("appid"));
         api.expectResponseStatus(HttpResponseStatusType.OK_200);
         api.callAPI();
         api.validateResponseAgainstSchema("api/openweather/_get/rs.schema");
+    }
+
+    @Test
+    public void testGetWeatherByTownName() {
+        GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
+        LOGGER.info(api.getProperties().getProperty("appid"));
+        api.expectResponseStatus(HttpResponseStatusType.OK_200);
+        api.callAPI();
+        api.validateResponse();
     }
 }
