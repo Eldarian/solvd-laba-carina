@@ -18,5 +18,6 @@ public class GetCurrentWeatherInTownMethod extends AbstractApiMethodV2 {
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
         addUrlParameter("q", getProperties().getProperty("q"));
         addUrlParameter("appid", getProperties().getProperty("appid"));
+        addUrlParameter("q", "Minsk");
     }
 }

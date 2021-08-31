@@ -30,4 +30,10 @@ public class OpenWeatherTest implements IAbstractTest {
         api.callAPI();
         api.validateResponse();
     }
+
+    @Test
+    public void testGetWeatherInUnexistingTown() {
+        GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
+
+    }
 }

@@ -105,7 +105,8 @@
         "sunset" : {
           "type": "integer"
         }
-      }
+      },
+      "required": ["country"]
     },
     "timezone" : {
       "type": "integer"
@@ -119,5 +120,6 @@
     "cod" : {
       "type": "integer"
     }
-  }
+  },
+  "required": ["coord", "cod", "weather", "sys", "name"]
 }
