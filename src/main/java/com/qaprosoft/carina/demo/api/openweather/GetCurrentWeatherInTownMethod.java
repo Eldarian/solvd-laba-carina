@@ -16,8 +16,5 @@ public class GetCurrentWeatherInTownMethod extends AbstractApiMethodV2 {
     public GetCurrentWeatherInTownMethod() {
         super(null, "api/openweather/_get/rs.json", "api/openweather/nyasvizhrequest.properties");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
-        addUrlParameter("q", getProperties().getProperty("q"));
-        addUrlParameter("appid", getProperties().getProperty("appid"));
-        addUrlParameter("q", "Minsk");
     }
 }
