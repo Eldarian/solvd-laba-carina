@@ -6,6 +6,7 @@ import com.qaprosoft.carina.demo.api.openweather.GetCurrentWeatherInTownMethod;
 import io.restassured.path.json.JsonPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
@@ -42,9 +43,13 @@ public class OpenWeatherTest implements IAbstractTest {
         api.getProperties().replace("q", "Nyasvizh", "Wrongtown");
         api.addUrlParameter("q", api.getProperties().getProperty("q"));
         api.addUrlParameter("appid", api.getProperties().getProperty("appid"));
-        api.callAPI();
+        String rs = api.callAPI().asString();
 
-        //TODO add validations
+        JsonPath jsonPath = new JsonPath(rs);
+        int cod = jsonPath.getInt("cod");
+        String message = jsonPath.getString("message");
+        Assert.assertEquals(message, "city not found");
+        Assert.assertEquals(cod, 404);
     }
 
     @Test
