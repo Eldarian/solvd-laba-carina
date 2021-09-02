@@ -27,17 +27,6 @@ public class OpenWeatherTest implements IAbstractTest {
     }
 
     @Test
-    public void testGetWeatherByTownName() {
-        GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
-        LOGGER.info(api.getProperties().getProperty("appid"));
-        api.expectResponseStatus(HttpResponseStatusType.OK_200);
-        api.addUrlParameter("q", api.getProperties().getProperty("q"));
-        api.addUrlParameter("appid", api.getProperties().getProperty("appid"));
-        api.callAPI();
-        api.validateResponse();
-    }
-
-    @Test
     public void testGetWeatherInUnexistingTown() {
         GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
         api.getProperties().replace("q", "Nyasvizh", "Wrongtown");
@@ -54,7 +43,15 @@ public class OpenWeatherTest implements IAbstractTest {
 
     @Test
     public void testGetWeatherByTownId() {
-
+        GetCurrentWeatherInTownMethod api = new GetCurrentWeatherInTownMethod();
+        api.addUrlParameter("appid", api.getProperties().getProperty("appid"));
+        api.addUrlParameter("id", api.getProperties().getProperty("townid"));
+        api.expectResponseStatus(HttpResponseStatusType.OK_200);
+        String rs = api.callAPI().asString();
+        api.validateResponseAgainstSchema("api/openweather/_get/rs_gen.schema");
+        JsonPath path = new JsonPath(rs);
+        String id = path.getString("id");
+        Assert.assertEquals(id, api.getProperties().getProperty("townid"));
     }
 
     @Test
