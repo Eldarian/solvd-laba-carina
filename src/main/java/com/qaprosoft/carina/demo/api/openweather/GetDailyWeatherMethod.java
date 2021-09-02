@@ -6,7 +6,7 @@ import com.qaprosoft.carina.core.foundation.utils.Configuration;
 public class GetDailyWeatherMethod extends AbstractApiMethodV2
 {
     public GetDailyWeatherMethod() {
-        super(null, null);
+        super(null, null, "api/openweather/nyasvizhrequest.properties");
         replaceUrlPlaceholder("base_url", Configuration.getEnvArg("api_url"));
     }
 }

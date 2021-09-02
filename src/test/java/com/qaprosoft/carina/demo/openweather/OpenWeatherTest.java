@@ -3,6 +3,7 @@ package com.qaprosoft.carina.demo.openweather;
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.api.http.HttpResponseStatusType;
 import com.qaprosoft.carina.demo.api.openweather.GetCurrentWeatherInTownMethod;
+import com.qaprosoft.carina.demo.api.openweather.GetDailyWeatherMethod;
 import io.restassured.path.json.JsonPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,6 +57,12 @@ public class OpenWeatherTest implements IAbstractTest {
 
     @Test
     public void testDailyForecast() {
-
+        GetDailyWeatherMethod api = new GetDailyWeatherMethod();
+        api.addUrlParameter("appid", api.getProperties().getProperty("appid"));
+        api.addUrlParameter("lat", api.getProperties().getProperty("lat"));
+        api.addUrlParameter("lon", api.getProperties().getProperty("lon"));
+        api.addUrlParameter("exclude", "hourly,minutely");
+        api.expectResponseStatus(HttpResponseStatusType.OK_200);
+        api.callAPI();
     }
 }
