@@ -63,6 +63,8 @@ public class OpenWeatherTest implements IAbstractTest {
         api.addUrlParameter("lon", api.getProperties().getProperty("lon"));
         api.addUrlParameter("exclude", "hourly,minutely");
         api.expectResponseStatus(HttpResponseStatusType.OK_200);
-        api.callAPI();
+        String rs = api.callAPI().asString();
+        JsonPath jsonPath = new JsonPath(rs);
+        Assert.assertEquals(jsonPath.getList("daily").size(), 8);
     }
 }
