@@ -32,3 +32,7 @@ reports/*
 /target/
 *new_custom_messages_*.properties
 /bin/
+
+.DS_Store
+src/.DS_Store
+
