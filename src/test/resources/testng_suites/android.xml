@@ -9,7 +9,7 @@
 	<parameter name="jenkinsEnvironments" value="DEMO" />
 
 	<parameter name="stringParam::capabilities.app::path to carina demo mobile application" value="https://qaprosoft.s3-us-west-2.amazonaws.com/carinademoexample.apk" />
-
+<!--	<parameter name="stringParam::capabilities.app::path to github app" value="~/Documents/GitHub+1.27.0.607.apk" />-->
 	<parameter name="jenkinsMobileDefaultPool" value="ANY" />
 
  	<parameter name="jenkinsRegressionPipeline" value="mobile_regression" />
