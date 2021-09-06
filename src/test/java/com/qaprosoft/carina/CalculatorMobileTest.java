@@ -11,6 +11,6 @@ public class CalculatorMobileTest implements IAbstractTest {
     public void testMultuplyTwo() {
         CalcMainPageBase calc = initPage(getDriver(), CalcMainPageBase.class);
         pause(3);
-        Assert.assertEquals(calc.multiply(), 4);
+        Assert.assertEquals(calc.multiply(2, 2), 4);
     }
 }

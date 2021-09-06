@@ -8,5 +8,5 @@ public abstract class CalcMainPageBase extends AbstractPage {
         super(driver);
     }
 
-    public abstract int multiply();
+    public abstract int multiply(int a, int b);
 }

@@ -4,6 +4,7 @@ import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.foundation.webdriver.locator.ExtendedFindBy;
 import com.qaprosoft.carina.demo.mobile.gui.calculator.pages.common.CalcMainPageBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -25,12 +26,20 @@ public class CalcMainPage extends CalcMainPageBase {
     @FindBy(id = "com.google.android.calculator:id/result_final")
     private ExtendedWebElement numField;
 
+    private ExtendedWebElement getButtonElement(int i) {
+        if(i >= 0 && i <=9) {
+            return new ExtendedWebElement(By.id("com.google.android.calculator:id/digit_" + i), "digit_"+i);
+        }
+        return null;
+    }
 
     @Override
-    public int multiply() {
-        twoButton.click();
+    public int multiply(int a, int b) {
+        ExtendedWebElement firstElement = getButtonElement(a);
+        ExtendedWebElement secondElement = getButtonElement(b);
+        firstElement.click();
         multiplyButton.click();
-        twoButton.click();
+        secondElement.click();
         equalsButton.click();
         pause(3);
         return Integer.parseInt(numField.getText());
