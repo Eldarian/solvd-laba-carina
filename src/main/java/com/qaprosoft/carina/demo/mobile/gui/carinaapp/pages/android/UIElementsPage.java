@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.android;
+package com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.android;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.UIElementsPageBase;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = UIElementsPageBase.class)
 public class UIElementsPage extends UIElementsPageBase implements IMobileUtils {

@@ -1,20 +1,24 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.android;
+package com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.ios;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.ClassChain;
+import com.qaprosoft.carina.core.foundation.webdriver.decorator.annotations.Predicate;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.WelcomePageBase;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = Type.ANDROID_PHONE, parentClass = WelcomePageBase.class)
+@DeviceType(pageType = Type.IOS_PHONE, parentClass = WelcomePageBase.class)
 public class WelcomePage extends WelcomePageBase {
 
-    @FindBy(id = "carina_logo")
+    @FindBy(xpath = "name = 'Welcome to Carina World!'")
+    @Predicate
     private ExtendedWebElement title;
 
-    @FindBy(id = "next_button")
+    @FindBy(xpath = "**/XCUIElementTypeButton[`name == 'NEXT'`]")
+    @ClassChain
     private ExtendedWebElement nextBtn;
 
     public WelcomePage(WebDriver driver) {

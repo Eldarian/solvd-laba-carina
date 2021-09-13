@@ -24,12 +24,12 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.CarinaDescriptionPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.ContactUsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.LoginPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.UIElementsPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WebViewPageBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.WelcomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.CarinaDescriptionPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.ContactUsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.LoginPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.UIElementsPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.WebViewPageBase;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.WelcomePageBase;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils;
 import com.qaprosoft.carina.demo.utils.MobileContextUtils.View;
 

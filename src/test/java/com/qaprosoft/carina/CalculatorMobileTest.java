@@ -1,11 +1,12 @@
 package com.qaprosoft.carina;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.utils.mobile.IMobileUtils;
 import com.qaprosoft.carina.demo.mobile.gui.calculator.pages.common.CalcMainPageBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class CalculatorMobileTest implements IAbstractTest {
+public class CalculatorMobileTest implements IAbstractTest, IMobileUtils {
 
     @Test
     public void testMultuplyTwo() {

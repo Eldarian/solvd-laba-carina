@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.common;
+package com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common;
 
 import org.openqa.selenium.WebDriver;
 

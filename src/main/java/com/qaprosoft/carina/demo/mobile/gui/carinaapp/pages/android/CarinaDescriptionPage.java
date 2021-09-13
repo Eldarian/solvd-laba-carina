@@ -1,9 +1,9 @@
-package com.qaprosoft.carina.demo.mobile.gui.pages.android;
+package com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.android;
 
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
 import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.Type;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.*;
+import com.qaprosoft.carina.demo.mobile.gui.carinaapp.pages.common.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
