@@ -29,7 +29,7 @@ public class CryptoSampleTest implements IAbstractTest {
 
     @Test
     public void testPlaceholdersWithEncryptionTestData() {
-        Assert.assertEquals(R.TESTDATA.get("test_credentials"), "test@gmail.com/EncryptMe");
+        Assert.assertEquals(R.TESTDATA.getDecrypted("login_email"), "fulcrumnest@gmail.com");
     }
 
 

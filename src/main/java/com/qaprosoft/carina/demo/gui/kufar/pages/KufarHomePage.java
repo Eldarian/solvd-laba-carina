@@ -50,8 +50,46 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='main-content']/following-sibling::div//button")
     private ExtendedWebElement languageButton;
 
+    @FindBy(xpath = "//div[@data-name=\"login_button\"]/button")
+    private ExtendedWebElement loginButton;
+
+    @FindBy(xpath = "//input[@id=\"email\"]")
+    private ExtendedWebElement emailField;
+
+    @FindBy(xpath = "//input[@id=\"password\"]")
+    private ExtendedWebElement passwordField;
+
+    @FindBy(xpath = "//div[@data-name=\"login_submit\"]/button")
+    private ExtendedWebElement submitAuthButton;
+
+    @FindBy(xpath = "//div[@data-name=\"user_profile_pic\"]")
+    private ExtendedWebElement userProfilePic;
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public void login(String email, String password) {
+        openLoginWindow();
+        enterUserCredentials(email, password);
+        confirmLogin();
+    }
+
+    public boolean isUserProfilePicPresent() {
+        return userProfilePic.isElementPresent();
+    }
+
+    public void openLoginWindow() {
+        loginButton.click();
+    }
+
+    public void enterUserCredentials(String email, String password) {
+        emailField.type(email);
+        passwordField.type(password);
+    }
+
+    public void confirmLogin() {
+        submitAuthButton.click();
     }
 
     public LotDescriptionPage openFirstLot() {
