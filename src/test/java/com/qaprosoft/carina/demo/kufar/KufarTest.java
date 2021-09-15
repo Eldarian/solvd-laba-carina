@@ -47,6 +47,7 @@ public class KufarTest implements IAbstractTest {
     public void testLotOpening() {
         KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
         kufarHomePage.open();
+        pause(1);
         kufarHomePage.closePopupMessage();
 
         List<LotItem> itemList = kufarHomePage.getLotItems();

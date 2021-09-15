@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Kufar minimal tests">
+    <parameter name="suiteOwner" value="eldarian"/>
+    <test name="kufar auth acceptance">
+        <classes>
+            <class name="com.qaprosoft.carina.demo.kufar.AuthTest" />
+            <class name="com.qaprosoft.carina.demo.kufar.KufarTest" />
+        </classes>
+    </test>
+</suite>

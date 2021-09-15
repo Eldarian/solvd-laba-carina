@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class KufarHomePage extends AbstractPage {
@@ -35,7 +36,7 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
     private RegionSelectionMenu regionSelectionMenu;
 
-    @FindBy(xpath = "//ul//span[text()='Компьютерная техника']/parent::a")
+    @FindBy(xpath = "//span[text()='Компьютерная техника'][not(../img)]/parent::a")
     private ExtendedWebElement computersCategoryLink;
 
     @FindBy(xpath = "//h1")
@@ -50,19 +51,19 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='main-content']/following-sibling::div//button")
     private ExtendedWebElement languageButton;
 
-    @FindBy(xpath = "//div[@data-name=\"login_button\"]/button")
+    @FindBy(xpath = "//div[@data-name='login_button']/button")
     private ExtendedWebElement loginButton;
 
-    @FindBy(xpath = "//input[@id=\"email\"]")
+    @FindBy(xpath = "//input[@id='email']")
     private ExtendedWebElement emailField;
 
-    @FindBy(xpath = "//input[@id=\"password\"]")
+    @FindBy(xpath = "//input[@id='password']")
     private ExtendedWebElement passwordField;
 
-    @FindBy(xpath = "//div[@data-name=\"login_submit\"]/button")
+    @FindBy(xpath = "//div[@data-name='login_submit']/button")
     private ExtendedWebElement submitAuthButton;
 
-    @FindBy(xpath = "//div[@data-name=\"user_profile_pic\"]")
+    @FindBy(xpath = "//div[@data-name='user_profile_pic']")
     private ExtendedWebElement userProfilePic;
 
     public KufarHomePage(WebDriver driver) {
@@ -87,6 +88,7 @@ public class KufarHomePage extends AbstractPage {
         emailField.type(email);
         passwordField.type(password);
     }
+
 
     public void confirmLogin() {
         submitAuthButton.click();
