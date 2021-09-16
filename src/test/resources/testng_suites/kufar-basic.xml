@@ -4,7 +4,6 @@
     <test name="kufar auth acceptance">
         <classes>
             <class name="com.qaprosoft.carina.demo.kufar.AuthTest" />
-            <class name="com.qaprosoft.carina.demo.kufar.KufarTest" />
         </classes>
     </test>
 </suite>
