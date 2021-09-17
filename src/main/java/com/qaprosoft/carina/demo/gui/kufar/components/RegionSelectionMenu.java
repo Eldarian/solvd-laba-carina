@@ -25,12 +25,12 @@ public class RegionSelectionMenu extends AbstractUIObject {
         super(driver, searchContext);
     }
 
-    public String selectRegion(int regionIndex) {
+    public String selectRegion(Integer regionIndex) {
         regionSelector.select(regionIndex);
         return regionSelector.getSelectedValue();
     }
 
-    public String selectTown(int townIndex) {
+    public String selectTown(Integer townIndex) {
         if(townSelector.isClickable()) {
             townSelector.select(townIndex);
             return townSelector.getSelectedValue();
