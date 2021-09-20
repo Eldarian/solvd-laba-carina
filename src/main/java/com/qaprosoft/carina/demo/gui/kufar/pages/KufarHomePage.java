@@ -132,15 +132,15 @@ public class KufarHomePage extends AbstractPage {
         return pageHeader.getText();
     }
 
-    public ExtendedWebElement getFilterButton() {
-        return filterButton;
-    }
-
     public void selectPriceSortByDescending() {
         sortSelector.select("По цене ↓");
     }
 
     public void switchLanguage() {
         languageButton.click();
+    }
+
+    public boolean isFilterButtonPresent() {
+        return filterButton.isPresent();
     }
 }

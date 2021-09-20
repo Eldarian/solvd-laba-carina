@@ -98,10 +98,10 @@ public class KufarTest implements IAbstractTest {
 
         getDriver().manage().window().setSize(new Dimension(1100, 768));
         pause(1);
-        Assert.assertFalse(homePage.getFilterButton().isPresent());
+        Assert.assertFalse(homePage.isFilterButtonPresent());
 
         getDriver().manage().window().setSize(new Dimension(800, 768));
-        Assert.assertTrue(homePage.getFilterButton().getElement().isDisplayed());
+        Assert.assertTrue(homePage.isFilterButtonPresent());
     }
 
     @AfterSuite
