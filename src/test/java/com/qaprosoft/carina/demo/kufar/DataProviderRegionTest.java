@@ -34,11 +34,7 @@ public class DataProviderRegionTest implements IAbstractTest {
         }
 
         LOGGER.info("Selected " + selectedRegion);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        pause(1);
         if(selectedRegion.contains(", ")) {
             for (LotItem item : homePage.getLotItems()) {
                 String itemRegion = item.getRegionLabelText();
