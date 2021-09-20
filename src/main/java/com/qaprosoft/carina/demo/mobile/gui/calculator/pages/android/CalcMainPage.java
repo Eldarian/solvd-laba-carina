@@ -26,17 +26,14 @@ public class CalcMainPage extends CalcMainPageBase {
     @FindBy(id = "com.google.android.calculator:id/result_final")
     private ExtendedWebElement numField;
 
-    private ExtendedWebElement getButtonElement(int i) {
-        if(i >= 0 && i <=9) {
-            return new ExtendedWebElement(By.id(String.format("com.google.android.calculator:id/digit_%d", i)), String.format("digit_%d", i));
-        }
-        return null;
-    }
+    @FindBy(id = "com.google.android.calculator:id/digit_%d")
+    private ExtendedWebElement digit;
 
     @Override
     public int multiply(int a, int b) {
-        ExtendedWebElement firstElement = getButtonElement(a);
-        ExtendedWebElement secondElement = getButtonElement(b);
+
+        ExtendedWebElement firstElement = digit.format(a);
+        ExtendedWebElement secondElement = digit.format(b);
         firstElement.click();
         multiplyButton.click();
         secondElement.click();
