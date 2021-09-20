@@ -56,7 +56,7 @@ public class DataprovidersSampleTest implements IAbstractTest {
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")
     @TestRailCases(testCasesId = "1")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Calculator", dsUid = "TUID", dsArgs = "a,b,c", testRailColumn = "a")
+    @XlsDataSourceParameters(path = "xls/dim.xlsx", sheet = "Calculator", dsUid = "TUID", dsArgs = "a,b,c", testRailColumn = "a")
     public void testSumOperation(String a, String b, String c) {
         int actual = Integer.valueOf(a) + Integer.valueOf(b);
         int expected = Integer.valueOf(c);
@@ -81,7 +81,7 @@ public class DataprovidersSampleTest implements IAbstractTest {
     @Test(dataProvider = "DataProvider")
     @MethodOwner(owner = "qpsdemo")
     @TestRailCases(testCasesId = "1")
-    @XlsDataSourceParameters(path = "xls/demo.xlsx", sheet = "Calculator", dsUid = "TUID", testRailColumn = "a")
+    @XlsDataSourceParameters(path = "xls/dim.xlsx", sheet = "Calculator", dsUid = "TUID", testRailColumn = "a")
     public void testSumOperationEx(HashMap<String, String> args) {
         int actual = Integer.valueOf(args.get("a")) + Integer.valueOf(args.get("b"));
         int expected = Integer.valueOf(args.get("c"));

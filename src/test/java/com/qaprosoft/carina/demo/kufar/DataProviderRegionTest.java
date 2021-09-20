@@ -1,21 +1,22 @@
 package com.qaprosoft.carina.demo.kufar;
 
 import com.qaprosoft.carina.core.foundation.IAbstractTest;
+import com.qaprosoft.carina.core.foundation.dataprovider.annotations.XlsDataSourceParameters;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
 import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import org.testng.Assert;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import static com.zebrunner.agent.core.registrar.TestRunRegistrar.LOGGER;
 
 public class DataProviderRegionTest implements IAbstractTest {
 
-    @Test
-    @Parameters({"region", "town"})
-    public void testRegion(@Optional("3") int region, @Optional("2") int town) {
+    /*@Test
+    @Parameters({"region", "town"})*/
+    @Test(dataProvider = "DataProvider")
+    @XlsDataSourceParameters(path= "xls/demo.xlsx", executeColumn = "Execute", sheet = "Kufar", dsUid = "TUID", dsArgs = "region,town")
+    public void testRegion(String region, String town) {
         KufarHomePage homePage = new KufarHomePage(getDriver());
         homePage.open();
         homePage.closePopupMessage();
@@ -53,5 +54,4 @@ public class DataProviderRegionTest implements IAbstractTest {
             }
         }
     }
-
 }

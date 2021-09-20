@@ -2,8 +2,8 @@
 <suite name="Kufar data-provider tests">
     <parameter name="suiteOwner" value="eldarian"/>
     <test name="kufar data provision">
-        <parameter name="region" value="3"/>
-        <parameter name="town" value="4"/>
+        <!--<parameter name="region" value="3"/>
+        <parameter name="town" value="4"/>-->
         <classes>
             <class name="com.qaprosoft.carina.demo.kufar.DataProviderRegionTest"> 
                 <methods>
