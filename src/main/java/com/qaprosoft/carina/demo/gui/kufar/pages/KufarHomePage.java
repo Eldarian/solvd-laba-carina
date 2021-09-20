@@ -5,7 +5,9 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
+import io.cucumber.java.et.Ja;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
@@ -66,6 +68,21 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@data-name='user_profile_pic']")
     private ExtendedWebElement userProfilePic;
 
+    @FindBy(xpath = "//img[@data-name='searchbar-reset-button']/..")
+    private ExtendedWebElement searchBarResetButton;
+
+    @FindBy(id = "searchbar-main")
+    private ExtendedWebElement searchBar;
+
+    public void typeToSearchbar(String text) {
+        searchBar.type(text);
+    }
+
+    public boolean isSearchBarEmpty() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        return js.executeScript("return arguments[0].getAttribute('value');", searchBar.getElement()).equals("");
+    }
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
     }
@@ -74,6 +91,11 @@ public class KufarHomePage extends AbstractPage {
         openLoginWindow();
         enterUserCredentials(email, password);
         confirmLogin();
+    }
+
+    public void clearSearchbarViaJS() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", searchBarResetButton.getElement());
     }
 
     public boolean isUserProfilePicPresent() {

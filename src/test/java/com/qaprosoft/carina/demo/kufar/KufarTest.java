@@ -72,6 +72,22 @@ public class KufarTest implements IAbstractTest {
         Assert.assertTrue(homePage.getPageHeaderText().startsWith("Компьютерная техника"));
     }
 
+    @Test
+    public void testSearchClear() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+        pause(3);
+        homePage.closeSubscribePopup();
+
+
+        homePage.typeToSearchbar("Hello world");
+        pause(1);
+        Assert.assertFalse(homePage.isSearchBarEmpty());
+        homePage.clearSearchbarViaJS();
+        Assert.assertTrue(homePage.isSearchBarEmpty());
+    }
+
 
     @Test
     @MethodOwner(owner = "eldarian")
