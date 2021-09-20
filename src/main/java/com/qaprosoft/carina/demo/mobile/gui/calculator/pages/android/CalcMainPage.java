@@ -28,7 +28,7 @@ public class CalcMainPage extends CalcMainPageBase {
 
     private ExtendedWebElement getButtonElement(int i) {
         if(i >= 0 && i <=9) {
-            return new ExtendedWebElement(By.id("com.google.android.calculator:id/digit_" + i), "digit_"+i);
+            return new ExtendedWebElement(By.id(String.format("com.google.android.calculator:id/digit_%d", i)), String.format("digit_%d", i));
         }
         return null;
     }
