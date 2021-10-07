@@ -5,13 +5,16 @@ import com.qaprosoft.carina.core.gui.AbstractPage;
 import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
 import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
 import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
+import io.cucumber.java.et.Ja;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class KufarHomePage extends AbstractPage {
@@ -35,7 +38,7 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
     private RegionSelectionMenu regionSelectionMenu;
 
-    @FindBy(xpath = "//ul//span[text()='Компьютерная техника']/parent::a")
+    @FindBy(xpath = "//span[text()='Компьютерная техника'][not(../img)]/parent::a")
     private ExtendedWebElement computersCategoryLink;
 
     @FindBy(xpath = "//h1")
@@ -50,8 +53,67 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='main-content']/following-sibling::div//button")
     private ExtendedWebElement languageButton;
 
+    @FindBy(xpath = "//div[@data-name='login_button']/button")
+    private ExtendedWebElement loginButton;
+
+    @FindBy(xpath = "//input[@id='email']")
+    private ExtendedWebElement emailField;
+
+    @FindBy(xpath = "//input[@id='password']")
+    private ExtendedWebElement passwordField;
+
+    @FindBy(xpath = "//div[@data-name='login_submit']/button")
+    private ExtendedWebElement submitAuthButton;
+
+    @FindBy(xpath = "//div[@data-name='user_profile_pic']")
+    private ExtendedWebElement userProfilePic;
+
+    @FindBy(xpath = "//img[@data-name='searchbar-reset-button']/..")
+    private ExtendedWebElement searchBarResetButton;
+
+    @FindBy(id = "searchbar-main")
+    private ExtendedWebElement searchBar;
+
+    public void typeToSearchbar(String text) {
+        searchBar.type(text);
+    }
+
+    public boolean isSearchBarEmpty() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        return js.executeScript("return arguments[0].getAttribute('value');", searchBar.getElement()).equals("");
+    }
+
     public KufarHomePage(WebDriver driver) {
         super(driver);
+    }
+
+    public void login(String email, String password) {
+        openLoginWindow();
+        enterUserCredentials(email, password);
+        confirmLogin();
+    }
+
+    public void clearSearchbarViaJS() {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        js.executeScript("arguments[0].click();", searchBarResetButton.getElement());
+    }
+
+    public boolean isUserProfilePicPresent() {
+        return userProfilePic.isElementPresent();
+    }
+
+    public void openLoginWindow() {
+        loginButton.click();
+    }
+
+    public void enterUserCredentials(String email, String password) {
+        emailField.type(email);
+        passwordField.type(password);
+    }
+
+
+    public void confirmLogin() {
+        submitAuthButton.click();
     }
 
     public LotDescriptionPage openFirstLot() {
@@ -92,15 +154,15 @@ public class KufarHomePage extends AbstractPage {
         return pageHeader.getText();
     }
 
-    public ExtendedWebElement getFilterButton() {
-        return filterButton;
-    }
-
     public void selectPriceSortByDescending() {
         sortSelector.select("По цене ↓");
     }
 
     public void switchLanguage() {
         languageButton.click();
+    }
+
+    public boolean isFilterButtonPresent() {
+        return filterButton.isPresent();
     }
 }

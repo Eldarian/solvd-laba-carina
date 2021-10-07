@@ -36,3 +36,8 @@ reports/*
 .DS_Store
 src/.DS_Store
 
+src/main/resources/mycrypto.key
+src/main/resources/source.txt
+src/main/resources/source_encrypted.txt
+src/main/resources/source_myencrypted.txt
+

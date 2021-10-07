@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Kufar data-provider tests">
+    <parameter name="suiteOwner" value="eldarian"/>
+    <test name="kufar data provision">
+        <!--<parameter name="region" value="3"/>
+        <parameter name="town" value="4"/>-->
+        <classes>
+            <class name="com.qaprosoft.carina.demo.kufar.DataProviderRegionTest"> 
+                <methods>
+                    <include name="testRegion" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

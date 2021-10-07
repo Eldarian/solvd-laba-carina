@@ -35,6 +35,7 @@ public class PaginationTest implements IAbstractTest {
         LOGGER.info("Pagination Test Before Class");
         homePage = new KufarHomePage(getDriver());
         homePage.open();
+        pause(1);
         homePage.closePopupMessage();
         paginationBlock = homePage.getPaginationBlock();
 

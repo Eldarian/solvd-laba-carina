@@ -33,13 +33,11 @@ public class PaginationBlock extends AbstractUIObject {
     }
 
     public boolean isNextPageButtonActive() {
-        return nextPageButton.isClickable();
+        return nextPageButton.getElement().getTagName().equalsIgnoreCase("a");
     }
 
     public KufarHomePage openNextPage() {
-        //if(isNextPageButtonActive()) {
-            nextPageButton.click();
-        //}
+        nextPageButton.click();
         return new KufarHomePage(getDriver());
     }
 
@@ -53,7 +51,7 @@ public class PaginationBlock extends AbstractUIObject {
     }
 
     public void openFirstPage() {
-        if(firstPageButton.isClickable()) {
+        if (firstPageButton.isClickable()) {
             firstPageButton.click();
         }
     }

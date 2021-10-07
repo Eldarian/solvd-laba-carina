@@ -47,6 +47,7 @@ public class KufarTest implements IAbstractTest {
     public void testLotOpening() {
         KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
         kufarHomePage.open();
+        pause(1);
         kufarHomePage.closePopupMessage();
 
         List<LotItem> itemList = kufarHomePage.getLotItems();
@@ -69,6 +70,22 @@ public class KufarTest implements IAbstractTest {
         homePage.openComputersCategory();
         pause(1);
         Assert.assertTrue(homePage.getPageHeaderText().startsWith("Компьютерная техника"));
+    }
+
+    @Test
+    public void testSearchClear() {
+        KufarHomePage homePage = new KufarHomePage(getDriver());
+        homePage.open();
+        homePage.closePopupMessage();
+        pause(3);
+        homePage.closeSubscribePopup();
+
+
+        homePage.typeToSearchbar("Hello world");
+        pause(1);
+        Assert.assertFalse(homePage.isSearchBarEmpty());
+        homePage.clearSearchbarViaJS();
+        Assert.assertTrue(homePage.isSearchBarEmpty());
     }
 
 
@@ -97,10 +114,10 @@ public class KufarTest implements IAbstractTest {
 
         getDriver().manage().window().setSize(new Dimension(1100, 768));
         pause(1);
-        Assert.assertFalse(homePage.getFilterButton().isPresent());
+        Assert.assertFalse(homePage.isFilterButtonPresent());
 
         getDriver().manage().window().setSize(new Dimension(800, 768));
-        Assert.assertTrue(homePage.getFilterButton().getElement().isDisplayed());
+        Assert.assertTrue(homePage.isFilterButtonPresent());
     }
 
     @AfterSuite

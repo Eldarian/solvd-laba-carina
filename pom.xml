@@ -18,7 +18,7 @@
 		<java.version>11</java.version>
 		<spring-boot.version>2.2.2.RELEASE</spring-boot.version>
 		<zebrunner-agent.version>RELEASE</zebrunner-agent.version>
-		<suite>helloWorld</suite>
+		<suite>kufar-basic</suite>
 	</properties>
 
 	<repositories>
