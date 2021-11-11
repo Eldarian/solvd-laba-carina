@@ -41,14 +41,6 @@ public class KufarTest implements IAbstractTest {
         LOGGER.info("Kufar Test Before Method");
     }
 
-    @Test
-    public void testElementsPresence() {
-        KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
-        kufarHomePage.open();
-        kufarHomePage.closePopupMessage();
-
-        Assert.assertTrue(kufarHomePage.TEMP_elementListChecker());
-    }
 
     @Test
     @MethodOwner(owner = "eldarian")

@@ -35,8 +35,8 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
     private RegionSelectionMenu regionSelectionMenu;
 
-    @FindBy(xpath = "//ul//span[text()='Компьютерная техника']/parent::a")
-    private ExtendedWebElement computersCategoryLink;
+    @FindBy(xpath = "//div/a/span[text()='Компьютерная техника']/parent::a")
+    private List<ExtendedWebElement> computersCategoryLink;
 
     @FindBy(xpath = "//h1")
     private ExtendedWebElement pageHeader;
@@ -47,7 +47,7 @@ public class KufarHomePage extends AbstractPage {
     @FindBy(xpath = "//select[@name='sort']")
     private ExtendedWebElement sortSelector;
 
-    @FindBy(xpath = "//div[@id='main-content']/following-sibling::div//button")
+    @FindBy(xpath = "//button/img[@alt='globe']/..")
     private ExtendedWebElement languageButton;
 
     public KufarHomePage(WebDriver driver) {
@@ -85,7 +85,7 @@ public class KufarHomePage extends AbstractPage {
 
 
     public void openComputersCategory() {
-        computersCategoryLink.click();
+        computersCategoryLink.get(0).click(); //TODO find more eloquent way
     }
 
     public String getPageHeaderText() {
@@ -102,14 +102,5 @@ public class KufarHomePage extends AbstractPage {
 
     public void switchLanguage() {
         languageButton.click();
-    }
-
-    //TODO REMOVE THIS METHOD AFTER DEBUG!!!!
-    public boolean TEMP_elementListChecker() {
-        if(lotItems != null || lotItems.size() > 0) {
-            LOGGER.info("Elements in List count: {}", lotItems.size());
-            return true;
-        }
-        return false;
     }
 }
