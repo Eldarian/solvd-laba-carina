@@ -17,7 +17,7 @@ import java.util.List;
 public class KufarHomePage extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    @FindBy(xpath = "//div[@data-name='listings']/article/div/a")
+    @FindBy(xpath = "//div[@data-name='listings']/article/div/article/a")
     private List<LotItem> lotItems;
 
     @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
@@ -102,5 +102,14 @@ public class KufarHomePage extends AbstractPage {
 
     public void switchLanguage() {
         languageButton.click();
+    }
+
+    //TODO REMOVE THIS METHOD AFTER DEBUG!!!!
+    public boolean TEMP_elementListChecker() {
+        if(lotItems != null || lotItems.size() > 0) {
+            LOGGER.info("Elements in List count: {}", lotItems.size());
+            return true;
+        }
+        return false;
     }
 }
