@@ -63,7 +63,7 @@ public class LotItem extends AbstractUIObject {
 
     public int getPrice() {
         String s = priceSpan.getText();
-        if (s.equals("Бесплатно")) return 0;
+        if (s.equals("Бесплатно") || s.equals("Договорная")) return 0;
         s = s.replaceAll("\\s+", "").replaceAll("р.", "");
         return Integer.parseInt(s);
     }
