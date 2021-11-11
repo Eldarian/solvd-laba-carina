@@ -6,8 +6,14 @@ import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.lang.invoke.MethodHandles;
 
 public class PaginationBlock extends AbstractUIObject {
+
+    Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "./*[last()]")
     private ExtendedWebElement nextPageButton;
@@ -33,7 +39,8 @@ public class PaginationBlock extends AbstractUIObject {
     }
 
     public boolean isNextPageButtonActive() {
-        return nextPageButton.isClickable();
+        LOGGER.debug("tag is {}", nextPageButton.getElement().getTagName());
+        return nextPageButton.getElement().getTagName().equalsIgnoreCase("a");
     }
 
     public KufarHomePage openNextPage() {

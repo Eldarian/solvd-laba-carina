@@ -25,7 +25,7 @@ public class LotItem extends AbstractUIObject {
     @FindBy(xpath = ".//span[preceding-sibling::img]")
     private ExtendedWebElement regionLabel;
 
-    @FindBy(xpath = ".//span[contains(text(), ' р.')]")
+    @FindBy(xpath = ".//span[contains(text(), ' р.')]") //TODO predict no price сase
     private ExtendedWebElement priceSpan;
 
     public LotItem(WebDriver driver) {

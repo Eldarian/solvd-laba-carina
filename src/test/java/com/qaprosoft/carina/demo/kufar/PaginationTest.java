@@ -80,7 +80,9 @@ public class PaginationTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testNextPageButtonOnLastPage() {
+        Assert.assertTrue(paginationBlock.isNextPageButtonActive());
         paginationBlock.openLastPage();
+        pause(3);
         Assert.assertFalse(paginationBlock.isNextPageButtonActive());
     }
 
