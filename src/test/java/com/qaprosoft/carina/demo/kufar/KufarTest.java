@@ -4,9 +4,9 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.demo.gui.kufar.components.LotItem;
-import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
-import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.LotItemBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.KufarHomePageBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.LotDescriptionPageBase;
 import org.openqa.selenium.Dimension;
 
 import org.slf4j.Logger;
@@ -46,14 +46,15 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P1)
     public void testLotOpening() {
-        KufarHomePage kufarHomePage = new KufarHomePage(getDriver());
+        KufarHomePageBase kufarHomePage = initPage(getDriver(), KufarHomePageBase.class);
+        //KufarHomePageBase kufarHomePage = new KufarHomePageBase(getDriver());
         kufarHomePage.open();
         kufarHomePage.closePopupMessage();
 
-        List<LotItem> itemList = kufarHomePage.getLotItems();
+        List<LotItemBase> itemList = kufarHomePage.getLotItems();
         String label = itemList.get(0).getLotLabel();
 
-        LotDescriptionPage descriptionPage = kufarHomePage.openFirstLot();
+        LotDescriptionPageBase descriptionPage = kufarHomePage.openFirstLot();
         Assert.assertEquals(descriptionPage.getLotLabelText(), label);
 
     }
@@ -62,7 +63,7 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P4)
     public void testComputerCategoryOpenFromLeftMenu() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
+        KufarHomePageBase homePage = initPage(getDriver(), KufarHomePageBase.class);
         homePage.open();
         homePage.closePopupMessage();
         homePage.closeSubscribePopup();
@@ -77,7 +78,7 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
     public void testLanguageSwitch() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
+        KufarHomePageBase homePage = initPage(getDriver(), KufarHomePageBase.class);
         homePage.open();
         homePage.closePopupMessage();
         homePage.closeSubscribePopup();
@@ -92,7 +93,7 @@ public class KufarTest implements IAbstractTest {
     @MethodOwner(owner = "eldarian")
     @TestPriority(Priority.P6)
     public void testFilterButtonAppearance() {
-        KufarHomePage homePage = new KufarHomePage(getDriver());
+        KufarHomePageBase homePage = initPage(getDriver(), KufarHomePageBase.class);
         homePage.open();
         homePage.closePopupMessage();
 

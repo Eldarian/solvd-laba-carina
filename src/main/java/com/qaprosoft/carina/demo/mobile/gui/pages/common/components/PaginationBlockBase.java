@@ -1,8 +1,8 @@
-package com.qaprosoft.carina.demo.gui.kufar.components;
+package com.qaprosoft.carina.demo.mobile.gui.pages.common.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.KufarHomePageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-public class PaginationBlock extends AbstractUIObject {
+public class PaginationBlockBase extends AbstractUIObject {
 
     Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -30,11 +30,11 @@ public class PaginationBlock extends AbstractUIObject {
     @FindBy(xpath = "./*[position() = last() - 1]")
     private ExtendedWebElement lastPageButton;
 
-    public PaginationBlock(WebDriver driver) {
+    public PaginationBlockBase(WebDriver driver) {
         super(driver);
     }
 
-    public PaginationBlock(WebDriver driver, SearchContext searchContext) {
+    public PaginationBlockBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
@@ -43,16 +43,16 @@ public class PaginationBlock extends AbstractUIObject {
         return nextPageButton.getElement().getTagName().equalsIgnoreCase("a");
     }
 
-    public KufarHomePage openNextPage() {
+    public KufarHomePageBase openNextPage() {
         //if(isNextPageButtonActive()) {
             nextPageButton.click();
         //}
-        return new KufarHomePage(getDriver());
+        return new KufarHomePageBase(getDriver());
     }
 
-    public KufarHomePage openPreviousPage() {
+    public KufarHomePageBase openPreviousPage() {
         previousPageButton.click();
-        return new KufarHomePage(getDriver());
+        return new KufarHomePageBase(getDriver());
     }
 
     public int getCurrentPageIndex() {

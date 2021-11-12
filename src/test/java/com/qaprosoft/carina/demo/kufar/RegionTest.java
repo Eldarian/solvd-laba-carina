@@ -4,8 +4,8 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.demo.gui.kufar.components.RegionSelectionMenu;
-import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.RegionSelectionMenuBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.KufarHomePageBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -16,8 +16,8 @@ import java.lang.invoke.MethodHandles;
 public class RegionTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private KufarHomePage homePage;
-    private RegionSelectionMenu regionSelectionMenu;
+    private KufarHomePageBase homePage;
+    private RegionSelectionMenuBase regionSelectionMenu;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -33,7 +33,7 @@ public class RegionTest implements IAbstractTest {
     public void beforeClass() {
         LOGGER.info("Region Test Before Class");
         getDriver().manage().window().fullscreen();
-        homePage = new KufarHomePage(getDriver());
+        homePage = new KufarHomePageBase(getDriver());
         homePage.open();
         pause(3);
         homePage.closePopupMessage();

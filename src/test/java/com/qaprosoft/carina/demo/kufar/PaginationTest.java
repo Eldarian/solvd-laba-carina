@@ -4,8 +4,8 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.demo.gui.kufar.components.PaginationBlock;
-import com.qaprosoft.carina.demo.gui.kufar.pages.KufarHomePage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.PaginationBlockBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.KufarHomePageBase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -17,8 +17,8 @@ public class PaginationTest implements IAbstractTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
-    private KufarHomePage homePage;
-    private PaginationBlock paginationBlock;
+    private KufarHomePageBase homePage;
+    private PaginationBlockBase paginationBlock;
 
     @BeforeSuite
     public void beforeSuite() {
@@ -33,7 +33,7 @@ public class PaginationTest implements IAbstractTest {
     @BeforeClass
     public void beforeClass() {
         LOGGER.info("Pagination Test Before Class");
-        homePage = new KufarHomePage(getDriver());
+        homePage = initPage(getDriver(), KufarHomePageBase.class);
         homePage.open();
         homePage.closePopupMessage();
         paginationBlock = homePage.getPaginationBlock();
@@ -56,7 +56,7 @@ public class PaginationTest implements IAbstractTest {
 
         int currentPage = paginationBlock.getCurrentPageIndex();
         homePage = paginationBlock.openNextPage();
-        PaginationBlock nextPageBlock = homePage.getPaginationBlock();
+        PaginationBlockBase nextPageBlock = homePage.getPaginationBlock();
         pause(3);
         Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage + 1);
 
@@ -70,7 +70,7 @@ public class PaginationTest implements IAbstractTest {
 
         int currentPage = paginationBlock.getCurrentPageIndex();
         homePage = paginationBlock.openNextPage();
-        PaginationBlock nextPageBlock = homePage.getPaginationBlock();
+        PaginationBlockBase nextPageBlock = homePage.getPaginationBlock();
         pause(3);
         Assert.assertEquals(nextPageBlock.getCurrentPageIndex(), currentPage + 1);
 

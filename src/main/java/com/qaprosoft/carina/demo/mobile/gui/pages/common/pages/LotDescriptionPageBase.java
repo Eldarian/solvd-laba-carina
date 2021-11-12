@@ -1,12 +1,12 @@
-package com.qaprosoft.carina.demo.gui.kufar.pages;
+package com.qaprosoft.carina.demo.mobile.gui.pages.common.pages;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class LotDescriptionPage extends AbstractPage {
-    public LotDescriptionPage(WebDriver driver) {
+public class LotDescriptionPageBase extends AbstractPage {
+    public LotDescriptionPageBase(WebDriver driver) {
         super(driver);
     }
 

@@ -1,8 +1,8 @@
-package com.qaprosoft.carina.demo.gui.kufar.components;
+package com.qaprosoft.carina.demo.mobile.gui.pages.common.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
-import com.qaprosoft.carina.demo.gui.kufar.pages.LotDescriptionPage;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.LotDescriptionPageBase;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-public class LotItem extends AbstractUIObject {
+public class LotItemBase extends AbstractUIObject {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -28,24 +28,24 @@ public class LotItem extends AbstractUIObject {
     @FindBy(xpath = ".//span[contains(text(), ' р.')]") //TODO predict no price сase
     private ExtendedWebElement priceSpan;
 
-    public LotItem(WebDriver driver) {
+    public LotItemBase(WebDriver driver) {
         super(driver);
     }
 
-    public LotItem(WebDriver driver, SearchContext searchContext) {
+    public LotItemBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public LotDescriptionPage openlotDescriptionPage() {
+    public LotDescriptionPageBase openlotDescriptionPage() {
         lotLink.click();
-        return new LotDescriptionPage(driver);
+        return new LotDescriptionPageBase(driver);
     }
 
     public String getLotLabel() {
         return lotLabel.getText();
     }
 
-    public LotDescriptionPage openDescriptionPage() {
+    public LotDescriptionPageBase openDescriptionPage() {
         lotLink.click();
         String originalWindow = getDriver().getWindowHandle();
         for (String windowHandle : getDriver().getWindowHandles()) {
@@ -54,7 +54,7 @@ public class LotItem extends AbstractUIObject {
                 break;
             }
         }
-        return new LotDescriptionPage(getDriver());
+        return new LotDescriptionPageBase(getDriver());
     }
 
     public String getRegionLabelText() {

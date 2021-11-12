@@ -1,4 +1,4 @@
-package com.qaprosoft.carina.demo.gui.kufar.components;
+package com.qaprosoft.carina.demo.mobile.gui.pages.common.components;
 
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractUIObject;
@@ -6,7 +6,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class RegionSelectionMenu extends AbstractUIObject {
+public class RegionSelectionMenuBase extends AbstractUIObject {
 
     @FindBy(xpath = ".//select[@name='rgn']")
     private ExtendedWebElement regionSelector;
@@ -17,11 +17,11 @@ public class RegionSelectionMenu extends AbstractUIObject {
     @FindBy(xpath = ".//button[text()='Выбрать' or text()='Выбраць']")
     private ExtendedWebElement confirmButton;
 
-    public RegionSelectionMenu(WebDriver driver) {
+    public RegionSelectionMenuBase(WebDriver driver) {
         super(driver);
     }
 
-    public RegionSelectionMenu(WebDriver driver, SearchContext searchContext) {
+    public RegionSelectionMenuBase(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
