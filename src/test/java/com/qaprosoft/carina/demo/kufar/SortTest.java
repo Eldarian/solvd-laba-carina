@@ -4,7 +4,7 @@ import com.qaprosoft.carina.core.foundation.IAbstractTest;
 import com.qaprosoft.carina.core.foundation.utils.ownership.MethodOwner;
 import com.qaprosoft.carina.core.foundation.utils.tag.Priority;
 import com.qaprosoft.carina.core.foundation.utils.tag.TestPriority;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.LotItemBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.LotItem;
 import com.qaprosoft.carina.demo.mobile.gui.pages.common.pages.KufarHomePageBase;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -23,7 +23,7 @@ public class SortTest implements IAbstractTest {
         homePage.selectPriceSortByDescending();
         pause(1);
         int price = Integer.MAX_VALUE;
-        List<LotItemBase> items = homePage.getLotItems();
+        List<LotItem> items = homePage.getLotItems();
         SoftAssert asserter = new SoftAssert();
         for (int i = 3; i < items.size(); i++) {
             int currentPrice = items.get(i).getPrice();

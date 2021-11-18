@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.invoke.MethodHandles;
 
-public class PaginationBlockBase extends AbstractUIObject {
+public class PaginationBlock extends AbstractUIObject {
 
     Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
@@ -30,22 +30,24 @@ public class PaginationBlockBase extends AbstractUIObject {
     @FindBy(xpath = "./*[position() = last() - 1]")
     private ExtendedWebElement lastPageButton;
 
-    public PaginationBlockBase(WebDriver driver) {
+    public PaginationBlock(WebDriver driver) {
         super(driver);
     }
 
-    public PaginationBlockBase(WebDriver driver, SearchContext searchContext) {
+    public PaginationBlock(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
     public boolean isNextPageButtonActive() {
-        LOGGER.debug("tag is {}", nextPageButton.getElement().getTagName());
+        LOGGER.info("tag is {}", nextPageButton.getElement().getTagName());
         return nextPageButton.getElement().getTagName().equalsIgnoreCase("a");
     }
 
     public KufarHomePageBase openNextPage() {
         //if(isNextPageButtonActive()) {
-            nextPageButton.click();
+        LOGGER.info("nextPage link is {}", nextPageButton.getAttribute("href"));
+
+        nextPageButton.click();
         //}
         return new KufarHomePageBase(getDriver());
     }

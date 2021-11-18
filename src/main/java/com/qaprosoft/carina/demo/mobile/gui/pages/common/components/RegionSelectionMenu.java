@@ -6,7 +6,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class RegionSelectionMenuBase extends AbstractUIObject {
+public class RegionSelectionMenu extends AbstractUIObject {
 
     @FindBy(xpath = ".//select[@name='rgn']")
     private ExtendedWebElement regionSelector;
@@ -17,11 +17,11 @@ public class RegionSelectionMenuBase extends AbstractUIObject {
     @FindBy(xpath = ".//button[text()='Выбрать' or text()='Выбраць']")
     private ExtendedWebElement confirmButton;
 
-    public RegionSelectionMenuBase(WebDriver driver) {
+    public RegionSelectionMenu(WebDriver driver) {
         super(driver);
     }
 
-    public RegionSelectionMenuBase(WebDriver driver, SearchContext searchContext) {
+    public RegionSelectionMenu(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 

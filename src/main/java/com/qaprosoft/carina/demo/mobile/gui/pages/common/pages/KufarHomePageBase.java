@@ -1,12 +1,10 @@
 package com.qaprosoft.carina.demo.mobile.gui.pages.common.pages;
 
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType;
-import com.qaprosoft.carina.core.foundation.utils.factory.DeviceType.*;
 import com.qaprosoft.carina.core.foundation.webdriver.decorator.ExtendedWebElement;
 import com.qaprosoft.carina.core.gui.AbstractPage;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.LotItemBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.PaginationBlockBase;
-import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.RegionSelectionMenuBase;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.LotItem;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.PaginationBlock;
+import com.qaprosoft.carina.demo.mobile.gui.pages.common.components.RegionSelectionMenu;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
@@ -20,7 +18,7 @@ public class KufarHomePageBase extends AbstractPage {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 
     @FindBy(xpath = "//div[@data-name='listings']/article/div/article/a")
-    private List<LotItemBase> lotItems;
+    private List<LotItem> lotItems;
 
     @FindBy(xpath = "//div[@id='portal']//descendant::img[@alt='close']")
     private ExtendedWebElement closePopupMessageButton;
@@ -29,13 +27,13 @@ public class KufarHomePageBase extends AbstractPage {
     private ExtendedWebElement closeSubscribePopupButton;
 
     @FindBy(xpath = "//div[@data-cy]")
-    private PaginationBlockBase paginationBlock;
+    private PaginationBlock paginationBlock;
 
     @FindBy(xpath = "//div[@id='header']/div[1]/div[3]//button[span/img]")
     private ExtendedWebElement regionSelectionButton;
 
     @FindBy(xpath = "//div[@id='header']//span[text()='Ваш регион' or text()='Ваш рэгіён']/..")
-    private RegionSelectionMenuBase regionSelectionMenu;
+    private RegionSelectionMenu regionSelectionMenu;
 
     @FindBy(xpath = "//div/a/span[text()='Компьютерная техника']/parent::a")
     private List<ExtendedWebElement> computersCategoryLink;
@@ -56,27 +54,30 @@ public class KufarHomePageBase extends AbstractPage {
         super(driver);
     }
 
-    public LotDescriptionPageBase openFirstLot() {
-        return lotItems.get(0).openDescriptionPage();
+    public LotDescriptionPageBase openLot(int index) {
+        LOGGER.info("open First lot started");
+        return lotItems.get(index).openDescriptionPage();
     }
 
     public void closePopupMessage() {
-        closePopupMessageButton.click();
+        if(closePopupMessageButton != null) {
+            closePopupMessageButton.click();
+        }
     }
 
     public void closeSubscribePopup() {
         closeSubscribePopupButton.click();
     }
 
-    public List<LotItemBase> getLotItems() {
+    public List<LotItem> getLotItems() {
         return lotItems;
     }
 
-    public PaginationBlockBase getPaginationBlock() {
+    public PaginationBlock getPaginationBlock() {
         return paginationBlock;
     }
 
-    public RegionSelectionMenuBase openRegionSelectionMenu() {
+    public RegionSelectionMenu openRegionSelectionMenu() {
         regionSelectionButton.click();
         return regionSelectionMenu;
     }
